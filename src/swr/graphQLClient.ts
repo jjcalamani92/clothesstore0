@@ -8,13 +8,6 @@ export const graphQLClientS = new GraphQLClient(
     },
   }
 );
-export const graphQLClientSS = new GraphQLClient(
-  `${process.env.APISS_URL}/graphql`,
-  {
-    credentials: "include",
-    mode: "cors",
-  }
-);
 export const graphQLClientP = new GraphQLClient(
   `${process.env.APIP_URL}/graphql`,
   {

@@ -24,9 +24,8 @@ const Home: FC<Props> = ({ site, data }) => {
         title='CrisDev'
         pageDescription='StartUp de Tecnologia'
         site= {site}
-      // asPath={asPath}
       >
-        <h1>Hola</h1>
+        <h1>Hola Jesus</h1>
       </Layout>
 
   )
