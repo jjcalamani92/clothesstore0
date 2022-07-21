@@ -24,10 +24,6 @@ export const Layout: FC<Props> = ({
 	site
 }) => {
 	const { pathname, asPath } = useRouter()
-  // console.log(asPath);
-	// console.log(site.route);
-	
-	
 	return (
 		<>
 			<Head>
@@ -43,10 +39,11 @@ export const Layout: FC<Props> = ({
 				<meta property="product:price:amount" content="25" />
 			</Head>
       <HeaderWear data={site.data} route={site.route} />
+			
 			{
 				asPath === '/'
 				?
-				<Home />
+				<Home data={site.route[2]} />
 				: 
 				<Page404 />
 			}

@@ -18,7 +18,7 @@ const Home: FC<Props> = ({ site, data }) => {
   // console.log(site);
   return (
       <Layout
-        title='CrisDev'
+        title={site.data.title}
         pageDescription='StartUp de Tecnologia'
         site= {site}
       />

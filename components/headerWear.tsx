@@ -20,7 +20,7 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
   const [open, setOpen] = useState(false)
   const { pathname, replace } = useRouter()
 
-  console.log('route', route);
+  // console.log('route', route);
 
   const p = pathname.substring(1).split('/')
   const out = () => {
