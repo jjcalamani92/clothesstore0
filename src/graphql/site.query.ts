@@ -101,6 +101,28 @@ export const SITE_PATHS = gql`
     }
   }
 `;
+export const SITE_PATHS_TREE = gql`
+  query Site($_id: ID!) {
+    site(_id: $_id) {
+      route {
+        name
+        href
+        children {
+          name
+          href
+          children {
+            name
+            href
+            children {
+              name
+              href
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export const SITE_CONTENT = gql`
   query Site($_id: ID!) {
