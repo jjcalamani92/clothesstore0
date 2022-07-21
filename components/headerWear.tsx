@@ -346,6 +346,11 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
                 <div className="h-full flex space-x-8">
                   {route.map((l0: Children) => (
                     // {site?.categories.map((category) => (
+                    
+                      l0.href ==='home'
+                      ?
+                      null
+                      :
                     <Popover key={l0.name} className="flex">
                       {({ open }) => (
                         <>
@@ -469,6 +474,7 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
                         </>
                       )}
                     </Popover>
+                  
                   ))}
 
                   {[].map((page: any, i) => (
