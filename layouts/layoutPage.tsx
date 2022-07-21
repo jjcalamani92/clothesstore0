@@ -2,14 +2,17 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { Header } from "../components";
+import Footer from "../components/footer";
 import { HeaderWear } from "../components/headerWear";
+import { Home } from "../components/pages/home";
 import { ISite } from "../src/interfaces";
+import { Page404 } from "./404";
 
 interface Props {
 	title: string;
 	pageDescription: string;
 	imageFullUrl?: string;
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	site: ISite
 }
 
@@ -20,9 +23,9 @@ export const Layout: FC<Props> = ({
 	imageFullUrl,
 	site
 }) => {
-	const router = useRouter()
-  const { pathname } = router
-  const p = pathname.substring(1).split('/')
+	const { pathname, asPath } = useRouter()
+  console.log(asPath);
+	
 	return (
 		<>
 			<Head>
@@ -38,13 +41,17 @@ export const Layout: FC<Props> = ({
 				<meta property="product:price:amount" content="25" />
 			</Head>
       <HeaderWear data={site.data} />
-			{/* <Header /> */}
-			{/* <Search01 /> */}
+			{
+				asPath === '/'
+				?
+				<Home />
+				: 
+				<Page404 />
+			}
 			<main>
 					{children}
 			</main>
-			{/* <Footer /> */}
-			
+			<Footer data={site.data} />
 			</>
 	);
 };

@@ -22,7 +22,7 @@ export const Page404 = () => {
 
 							<a
 								rel="noopener noreferrer"
-								className="px-8 py-3 font-semibold rounded bg-orange-500 hover:bg-orange-600 text-white inline-block"
+								className="px-8 py-3 font-semibold rounded bg-red-500 hover:bg-red-600 text-white inline-block"
 							>
 								Volver a la página de inicio
 							</a>

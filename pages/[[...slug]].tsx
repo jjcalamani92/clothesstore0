@@ -21,9 +21,7 @@ const Home: FC<Props> = ({ site, data }) => {
         title='CrisDev'
         pageDescription='StartUp de Tecnologia'
         site= {site}
-      >
-        <h1>Hola Jesus</h1>
-      </Layout>
+      />
 
   )
 }
@@ -64,7 +62,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = [] } = params as { slug: string[] }
-  console.log('slug', slug);
+  // console.log('slug', slug);
   const { site } = await graphQLClientS.request(SITE, { _id: process.env.API_SITE })
   return {
     props: { site }, // will be passed to the page component as props
