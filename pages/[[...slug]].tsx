@@ -66,6 +66,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { site } = await graphQLClientS.request(SITE, { _id: process.env.API_SITE })
   return {
     props: { site }, // will be passed to the page component as props
+    revalidate: 10,
   }
 }
 export default Home

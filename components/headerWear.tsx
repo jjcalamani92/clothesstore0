@@ -482,7 +482,6 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
                     <Link key={i} href={page.href}>
 
                       <a
-
                         className="flex items-center text-xs md:text-sm font-medium text-gray-700 hover:text-gray-800 capitalize"
                       >
                         {page.name}
