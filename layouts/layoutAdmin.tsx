@@ -7,9 +7,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { HeaderAdmin } from '../components/headerAdmin';
 import { HeadingDashboard, HeadingForm } from '../components/component';
-import { GridSite } from '../components';
 import { ISite } from '../src/interfaces';
-import { FormSite } from '../components/form';
 
 interface Props {
   title: string
@@ -37,14 +35,14 @@ export const LayoutAdmin:FC<Props> = ({title, asPath, data, site}) => {
              ?
              <>
               <HeadingForm title="Sitio"/>
-              <FormSite site={site} url={asPath}/>
+              {/* <FormSite site={site} url={asPath}/> */}
              </>
              :
             asPath === '/dashboard/sites'
             ?
             <>
               <HeadingDashboard title='Sitio' url={asPath} />
-              <GridSite data={data}/>
+              {/* <GridSite data={data}/> */}
             </>
             :
            
