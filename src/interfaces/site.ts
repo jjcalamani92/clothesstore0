@@ -75,7 +75,25 @@ export interface Children {
   description: string;
   imageSrc: string;
   imageAlt: string;
+  content: Content;
   items?: Item[];
   featured?:Featured[];
   children:Children[];
+}
+export interface Content {
+  header: Header;
+  body: Body;
+}
+export interface Header {
+  title: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+export interface Body {
+  title: string;
+  caption: string;
+  content: string;
+  imageSrc: string;
+  imageAlt: string;
+  button: string[];
 }

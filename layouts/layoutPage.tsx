@@ -39,11 +39,10 @@ export const Layout: FC<Props> = ({
 				<meta property="product:price:amount" content="25" />
 			</Head>
       <HeaderWear data={site.data} route={site.route} />
-			
 			{
 				asPath === '/'
 				?
-				<Home data={site.route[2]} />
+				<Home data={site.route[0]} body={site.route[0].content.body} />
 				: 
 				<Page404 />
 			}

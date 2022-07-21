@@ -45,6 +45,19 @@ export const SITE = gql`
         description
         imageSrc
         imageAlt
+        content {
+          header {
+            title
+            imageSrc
+          }
+          body {
+            title
+            caption
+            content
+            imageSrc
+            button
+          }
+        }
         children {
           name
           href
@@ -82,6 +95,27 @@ export const SITE_PATHS = gql`
             children {
               href
             }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const SITE_CONTENT = gql`
+  query Site($_id: ID!) {
+    site(_id: $_id) {
+      route {
+        content {
+          header {
+            title
+            imageSrc
+          }
+          body {
+            title
+            caption
+            imageSrc
+            button
           }
         }
       }

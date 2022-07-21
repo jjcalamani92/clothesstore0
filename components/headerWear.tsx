@@ -343,50 +343,50 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
 
               {
                 <Popover.Group className="hidden z-40 lg:ml-8 lg:block lg:self-stretch">
-                <div className="h-full flex space-x-8">
-                  {route.map((l0: Children) => (
-                    // {site?.categories.map((category) => (
-                    
-                      l0.href ==='home'
-                      ?
-                      null
-                      :
-                    <Popover key={l0.name} className="flex">
-                      {({ open }) => (
-                        <>
-                          <div className="relative flex">
-                            <Popover.Button
-                              className={classNames(
-                                open
-                                  ? 'border-red-600 text-red-600'
-                                  : 'border-transparent text-gray-700 hover:text-gray-800',
-                                'relative z-10 flex items-center transition-colors ease-out duration-200 text-xs md:text-sm font-medium border-b-2 -mb-px pt-px capitalize'
-                              )}
-                            >
-                              {l0.name}
-                            </Popover.Button>
-                          </div>
-                          {
-                            l0.children.length !== 0
-                            ?
-                            <Transition
-                              as={Fragment}
-                              enter="transition ease-out duration-200"
-                              enterFrom="opacity-0"
-                              enterTo="opacity-100"
-                              leave="transition ease-in duration-150"
-                              leaveFrom="opacity-100"
-                              leaveTo="opacity-0"
-                            >
-                              <Popover.Panel className="absolute top-full inset-x-0 text-xs md:text-sm text-gray-500">
-                                {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                                <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
+                  <div className="h-full flex space-x-8">
+                    {route.map((l0: Children) => (
+                      // {site?.categories.map((category) => (
 
-                                <div className="relative bg-white">
-                                  <div className="max-w-7xl mx-auto px-8">
-                                    <div className="grid grid-cols-6 gap-y-10 gap-x-8 py-10">
-                                      <div className="col-start-5 grid grid-cols-2 gap-x-8 col-span-4">
-                                        {/* {children0.map((featured: any, i) => (
+                      l0.href === 'home'
+                        ?
+                        null
+                        :
+                        <Popover key={l0.name} className="flex">
+                          {({ open }) => (
+                            <>
+                              <div className="relative flex">
+                                <Popover.Button
+                                  className={classNames(
+                                    open
+                                      ? 'border-red-600 text-red-600'
+                                      : 'border-transparent text-gray-700 hover:text-gray-800',
+                                    'relative z-10 flex items-center transition-colors ease-out duration-200 text-xs md:text-sm font-medium border-b-2 -mb-px pt-px capitalize'
+                                  )}
+                                >
+                                  {l0.name}
+                                </Popover.Button>
+                              </div>
+                              {
+                                l0.children.length !== 0
+                                  ?
+                                  <Transition
+                                    as={Fragment}
+                                    enter="transition ease-out duration-200"
+                                    enterFrom="opacity-0"
+                                    enterTo="opacity-100"
+                                    leave="transition ease-in duration-150"
+                                    leaveFrom="opacity-100"
+                                    leaveTo="opacity-0"
+                                  >
+                                    <Popover.Panel className="absolute top-full inset-x-0 text-xs md:text-sm text-gray-500">
+                                      {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
+                                      <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
+
+                                      <div className="relative bg-white">
+                                        <div className="max-w-7xl mx-auto px-8">
+                                          <div className="grid grid-cols-6 gap-y-10 gap-x-8 py-10">
+                                            <div className="col-start-5 grid grid-cols-2 gap-x-8 col-span-4">
+                                              {/* {children0.map((featured: any, i) => (
                                         // {category.featured.slice(-2).map((featured, i) => (
                                           <Link key={i} href={`/promociones/${featured.href}`} className="group text-base sm:text-xs md:text-sm">
                                             <a>
@@ -410,36 +410,36 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
                                             </a>
                                           </Link>
                                         ))} */}
-                                      </div>
-                                          <div className="row-start-1 grid grid-cols-4 gap-y-10 gap-x-8 text-xs md:text-sm col-span-4">
-                                            {l0.children.map((l1: Children, i: number) => (
-                                              <div key={i}>
-                                                <Link href={`/${l0.href}/${l1.href}`}>
-                                                  <a className="font-medium text-gray-900 capitalize">
-                                                    {l1.name}
-                                                  </a>
-                                                </Link>
+                                            </div>
+                                            <div className="row-start-1 grid grid-cols-4 gap-y-10 gap-x-8 text-xs md:text-sm col-span-4">
+                                              {l0.children.map((l1: Children, i: number) => (
+                                                <div key={i}>
+                                                  <Link href={`/${l0.href}/${l1.href}`}>
+                                                    <a className="font-medium text-gray-900 capitalize">
+                                                      {l1.name}
+                                                    </a>
+                                                  </Link>
 
-                                                {
-                                                  l1.children
-                                                    ?
-                                                    <ul
-                                                      role="list"
-                                                      aria-labelledby={`${l1.name}-heading`}
-                                                      className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-                                                    >
-                                                      {l1.children.map((l2: Children, i: number) => (
-                                                        // {section.items.slice(0,4).map((item:any, i) => (
-                                                        <li key={i} className="flex">
-                                                          <Link href={`/${l0.href}/${l1.href}/${l2.href}`}>
-                                                            <a className="hover:text-gray-800 capitalize">
+                                                  {
+                                                    l1.children
+                                                      ?
+                                                      <ul
+                                                        role="list"
+                                                        aria-labelledby={`${l1.name}-heading`}
+                                                        className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                                      >
+                                                        {l1.children.map((l2: Children, i: number) => (
+                                                          // {section.items.slice(0,4).map((item:any, i) => (
+                                                          <li key={i} className="flex">
+                                                            <Link href={`/${l0.href}/${l1.href}/${l2.href}`}>
+                                                              <a className="hover:text-gray-800 capitalize">
 
-                                                              {l2.name}
-                                                            </a>
-                                                          </Link>
-                                                        </li>
-                                                      ))}
-                                                      {/* {
+                                                                {l2.name}
+                                                              </a>
+                                                            </Link>
+                                                          </li>
+                                                        ))}
+                                                        {/* {
                                                         l1.children.length > 3
                                                           ?
                                                           <li className="flow-root">
@@ -454,41 +454,41 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
                                                           null
                                                       } */}
 
-                                                    </ul>
-                                                    :
-                                                    null
-                                                }
-                                              </div>
+                                                      </ul>
+                                                      :
+                                                      null
+                                                  }
+                                                </div>
 
-                                            ))}
+                                              ))}
+                                            </div>
+
                                           </div>
-                                      
-                                    </div>
-                                  </div>
-                                </div>
-                              </Popover.Panel>
-                            </Transition>
-                            :
-                            null
-                          }
-                        </>
-                      )}
-                    </Popover>
-                  
-                  ))}
+                                        </div>
+                                      </div>
+                                    </Popover.Panel>
+                                  </Transition>
+                                  :
+                                  null
+                              }
+                            </>
+                          )}
+                        </Popover>
 
-                  {[].map((page: any, i) => (
-                    // {site.pages.map((page, i) => (
-                    <Link key={i} href={page.href}>
+                    ))}
 
-                      <a
-                        className="flex items-center text-xs md:text-sm font-medium text-gray-700 hover:text-gray-800 capitalize"
-                      >
-                        {page.name}
-                      </a>
-                    </Link>
-                  ))}
-                  {/* {
+                    {[].map((page: any, i) => (
+                      // {site.pages.map((page, i) => (
+                      <Link key={i} href={page.href}>
+
+                        <a
+                          className="flex items-center text-xs md:text-sm font-medium text-gray-700 hover:text-gray-800 capitalize"
+                        >
+                          {page.name}
+                        </a>
+                      </Link>
+                    ))}
+                    {/* {
                     isLoggedIn && user?.role === 'ADMIN_ROL' && p[0] === 'admin' && (
                       <>
                         <Link href="/admin/sites">
@@ -516,8 +516,8 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
                     )
                   } */}
 
-                </div>
-              </Popover.Group>
+                  </div>
+                </Popover.Group>
               }
 
 
