@@ -15,10 +15,7 @@ interface Props {
 const Home: FC<Props> = ({ site, data }) => {
   const { asPath, query, pathname } = useRouter()
   let url = asPath.substring(1).split('/')
-  console.log(site);
-  
-
-
+  // console.log(site);
   return (
       <Layout
         title='CrisDev'
