@@ -5,7 +5,7 @@ import { FolderOpenIcon, HomeIcon, LoginIcon, LogoutIcon, MenuIcon, SearchIcon, 
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Data } from '../src/interfaces';
+import { Children, Data } from '../src/interfaces';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -13,17 +13,18 @@ function classNames(...classes: string[]) {
 
 interface Props {
   data: Data
+  route: Children[]
 }
 
-export const HeaderWear:FC<Props> = ({data}) => {
-  // const { site, toggleSideSearch, toggleSideCart } = useContext(UiContext)
-  // const { user, isLoggedIn, logout } = useContext(AuthContext);
+export const HeaderWear: FC<Props> = ({ data, route }) => {
   const [open, setOpen] = useState(false)
-  const router = useRouter()
-  const { pathname } = router
+  const { pathname, replace } = useRouter()
+
+  console.log('route', route);
+
   const p = pathname.substring(1).split('/')
   const out = () => {
-    router.replace('/')
+    replace('/')
   }
   return (
     <div className="bg-white">
@@ -71,13 +72,13 @@ export const HeaderWear:FC<Props> = ({data}) => {
                     <Tab.Group as="div" className="mt-2">
                       <div className="border-b border-gray-200">
                         <Tab.List className="-mb-px flex px-4 space-x-8">
-                          {[].map((category:any) => (
-                          // {site.categories.map((category) => (
+                          {route.map((category: Children) => (
+                            // {site.categories.map((category) => (
                             <Tab
                               key={category.name}
                               className={({ selected }) =>
                                 classNames(
-                                  selected ? 'text-rose-600 border-rose-600' : 'text-gray-900 border-transparent',
+                                  selected ? 'text-red-600 border-red-600' : 'text-gray-900 border-transparent',
                                   'flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-xs md:text-sm font-medium capitalize'
                                 )
                               }
@@ -88,12 +89,12 @@ export const HeaderWear:FC<Props> = ({data}) => {
                         </Tab.List>
                       </div>
                       <Tab.Panels as={Fragment}>
-                        {[].map((category:any) => (
-                        // {site.categories.map((category) => (
+                        {[].map((category: any) => (
+                          // {site.categories.map((category) => (
                           <Tab.Panel key={category.name} className="pt-5 pb-8 px-4">
                             <div className="grid grid-cols-2 gap-x-4">
-                              {[].map((featured:any) => (
-                              // {category.featured.slice(-2).map((featured:any) => (
+                              {[].map((featured: any) => (
+                                // {category.featured.slice(-2).map((featured:any) => (
                                 <Link href={`/promociones/${featured.href}`} key={featured.name} className="group text-xs md:text-sm">
                                   <a >
                                     <div className="aspect-w-1 aspect-h-1 rounded-lg bg-white overflow-hidden leading-none group-hover:opacity-75 li">
@@ -118,45 +119,45 @@ export const HeaderWear:FC<Props> = ({data}) => {
                               ))}
                             </div>
                             <div className="grid grid-cols-2 gap-x-4">
-                            {[].map((section: any, i) => (
-                            // {category.sections.map((section, i) => (
-                              <div key={i} className="mt-6">
-                                <Link href={`/${category.href}/${section.href}`}>
-                                  <a className="text-xs md:text-sm font-medium text-gray-900 capitalize">
-                                    {section.name}
-                                  </a>
-                                </Link>
-                                <ul
-                                  role="list"
-                                  className="mt-4 flex flex-col space-y-5 capitalize"
-                                >
-                                  {[].map((item:any, i) => (
-                                  // {section.items.slice(0,4).map((item, i) => (
-                                    <li key={i} className="flow-root">
-                                      <Link href={`/${category.href}/${section.href}/${item.href}`}>
+                              {[].map((section: any, i) => (
+                                // {category.sections.map((section, i) => (
+                                <div key={i} className="mt-6">
+                                  <Link href={`/${category.href}/${section.href}`}>
+                                    <a className="text-xs md:text-sm font-medium text-gray-900 capitalize">
+                                      {section.name}
+                                    </a>
+                                  </Link>
+                                  <ul
+                                    role="list"
+                                    className="mt-4 flex flex-col space-y-5 capitalize"
+                                  >
+                                    {[].map((item: any, i) => (
+                                      // {section.items.slice(0,4).map((item, i) => (
+                                      <li key={i} className="flow-root">
+                                        <Link href={`/${category.href}/${section.href}/${item.href}`}>
 
-                                        <a className="-m-2 p-2 block text-xs md:text-sm text-gray-500">
-                                          {item.name}
-                                        </a>
-                                      </Link>
-                                    </li>
-                                  ))}
-                                  {
-                                    section.items.length >3
-                                    ?
-                                    <li className="flow-root">
-                                      <Link href={`/${category.href}/${section.href}`}>
-                                        <a className="-m-2 p-2 block text-xs md:text-sm text-gray-900">
-                                        Ver Todo {'>'}
-                                        </a>
-                                      </Link>
-                                    </li>
-                                    :
-                                    null
-                                  }
-                                </ul>
-                              </div>
-                            ))}
+                                          <a className="-m-2 p-2 block text-xs md:text-sm text-gray-500">
+                                            {item.name}
+                                          </a>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                    {
+                                      section.items.length > 3
+                                        ?
+                                        <li className="flow-root">
+                                          <Link href={`/${category.href}/${section.href}`}>
+                                            <a className="-m-2 p-2 block text-xs md:text-sm text-gray-900">
+                                              Ver Todo {'>'}
+                                            </a>
+                                          </Link>
+                                        </li>
+                                        :
+                                        null
+                                    }
+                                  </ul>
+                                </div>
+                              ))}
                             </div>
                           </Tab.Panel>
                         ))}
@@ -168,8 +169,8 @@ export const HeaderWear:FC<Props> = ({data}) => {
 
 
                 <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                  {[].map((page:any, i) => (
-                  // {site.pages.map((page, i) => (
+                  {[].map((page: any, i) => (
+                    // {site.pages.map((page, i) => (
                     <div key={i} className="flow-root">
                       <Link href={page.href}>
                         <a className="-m-2 p-2 block font-medium text-gray-900">
@@ -181,11 +182,11 @@ export const HeaderWear:FC<Props> = ({data}) => {
                   ))}
                   <div className="flow-root">
                     <Link href="/promociones">
-                      <a  className="-m-2 p-2 block font-medium text-gray-900 text-xs md:text-sm">
+                      <a className="-m-2 p-2 block font-medium text-gray-900 text-xs md:text-sm">
                         Promociones
                       </a>
                     </Link>
-                    </div>
+                  </div>
                 </div>
 
                 {/* {
@@ -316,7 +317,7 @@ export const HeaderWear:FC<Props> = ({data}) => {
       </Transition.Root>
 
       <header className="relative bg-white">
-        {/* <p className="bg-rose-600 h-10 flex items-center justify-center text-xs md:text-sm font-medium text-white px-4 sm:px-6 lg:px-8">
+        {/* <p className="bg-red-600 h-10 flex items-center justify-center text-xs md:text-sm font-medium text-white px-4 sm:px-6 lg:px-8">
           Obtenga envío gratuito en pedidos superiores a $ 100
         </p> */}
 
@@ -339,138 +340,147 @@ export const HeaderWear:FC<Props> = ({data}) => {
               </Link>
 
               {/* Flyout menus */}
-              <Popover.Group className="hidden z-40 lg:ml-8 lg:block lg:self-stretch">
+
+              {
+                <Popover.Group className="hidden z-40 lg:ml-8 lg:block lg:self-stretch">
                 <div className="h-full flex space-x-8">
+                  {route.map((l0: Children) => (
+                    // {site?.categories.map((category) => (
+                    <Popover key={l0.name} className="flex">
+                      {({ open }) => (
+                        <>
+                          <div className="relative flex">
+                            <Popover.Button
+                              className={classNames(
+                                open
+                                  ? 'border-red-600 text-red-600'
+                                  : 'border-transparent text-gray-700 hover:text-gray-800',
+                                'relative z-10 flex items-center transition-colors ease-out duration-200 text-xs md:text-sm font-medium border-b-2 -mb-px pt-px capitalize'
+                              )}
+                            >
+                              {l0.name}
+                            </Popover.Button>
+                          </div>
+                          {
+                            l0.children.length !== 0
+                            ?
+                            <Transition
+                              as={Fragment}
+                              enter="transition ease-out duration-200"
+                              enterFrom="opacity-0"
+                              enterTo="opacity-100"
+                              leave="transition ease-in duration-150"
+                              leaveFrom="opacity-100"
+                              leaveTo="opacity-0"
+                            >
+                              <Popover.Panel className="absolute top-full inset-x-0 text-xs md:text-sm text-gray-500">
+                                {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
+                                <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
-                  {p[0] === 'admin'
-                    ? null
-                    : <>
-                      {[].map((category:any) => (
-                      // {site?.categories.map((category) => (
-                        <Popover key={category.name} className="flex">
-                          {({ open }) => (
-                            <>
-                              <div className="relative flex">
-                                <Popover.Button
-                                  className={classNames(
-                                    open
-                                      ? 'border-rose-600 text-rose-600'
-                                      : 'border-transparent text-gray-700 hover:text-gray-800',
-                                    'relative z-10 flex items-center transition-colors ease-out duration-200 text-xs md:text-sm font-medium border-b-2 -mb-px pt-px capitalize'
-                                  )}
-                                >
-                                  {category.name}
-                                </Popover.Button>
-                              </div>
-
-                              <Transition
-                                as={Fragment}
-                                enter="transition ease-out duration-200"
-                                enterFrom="opacity-0"
-                                enterTo="opacity-100"
-                                leave="transition ease-in duration-150"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                              >
-                                <Popover.Panel className="absolute top-full inset-x-0 text-xs md:text-sm text-gray-500">
-                                  {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                                  <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
-
-                                  <div className="relative bg-white">
-                                    <div className="max-w-7xl mx-auto px-8">
-                                      <div className="grid grid-cols-6 gap-y-10 gap-x-8 py-10">
-                                        <div className="col-start-5 grid grid-cols-2 gap-x-8 col-span-4">
-                                          {[].map((featured: any, i) => (
-                                          // {category.featured.slice(-2).map((featured, i) => (
-                                            <Link key={i} href={`/promociones/${featured.href}`} className="group text-base sm:text-xs md:text-sm">
-                                              <a>
-                                              <div className="aspect-w-1 aspect-h-1 rounded-lg bg-white overflow-hidden group-hover:opacity-75 leading-none">
-                                                <Image
-                                                  src={featured.imageSrc}
-                                                  alt={featured.imageAlt}
-                                                  width='250'
-                                                  height='250'
-                                                  objectFit={"cover"}
-                                                  objectPosition={'center'}
-                                                />
-                                              </div>
-                                              <div className="mt-3 block font-medium text-gray-900 capitalize">
-                                                <span className="z-10 inset-0" aria-hidden="true" />
-                                                {featured.name}
-                                              </div>
-                                              <p aria-hidden="true" className="mt-1 capitalize ">
-                                                Ver Productos
-                                              </p>
-                                              </a>
-                                            </Link>
-                                          ))}
-                                        </div>
-                                        <div className="row-start-1 grid grid-cols-4 gap-y-10 gap-x-8 text-xs md:text-sm col-span-4">
-                                          {[].map((section: any, i) => (
-                                          // {category.sections.map((section, i) => (
-                                            <div key={i}>
-                                              <Link href={`/${category.href}/${section.href}`}>
-                                                <a className="font-medium text-gray-900 capitalize">
-                                                  {section.name}
-                                                </a>
-                                              </Link>
-                                              <ul
-                                                role="list"
-                                                aria-labelledby={`${section.name}-heading`}
-                                                className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-                                              >
-                                                {[].map((item:any, i) => (
-                                                // {section.items.slice(0,4).map((item:any, i) => (
-                                                  <li key={i} className="flex">
-                                                    <Link href={`/${category.href}/${section.href}/${item.href}`}>
-                                                      <a  className="hover:text-gray-800 capitalize">
-
-                                                        {item.name}
-                                                      </a>
-                                                    </Link>
-                                                  </li>
-                                                ))}
-                                                {
-                                                  section.items.length >3
-                                                  ?
-                                                  <li className="flow-root">
-                                                  <Link href={`/${category.href}/${section.href}`}>
-
-                                                    <a className="-m-2 p-2 mb-3 block text-xs md:text-sm text-gray-900">
-                                                      Ver Todo {'>'}
-                                                    </a>
-                                                  </Link>
-                                                </li>
-                                                  :
-                                                  null
-                                                }
-                                                
-                                              </ul>
+                                <div className="relative bg-white">
+                                  <div className="max-w-7xl mx-auto px-8">
+                                    <div className="grid grid-cols-6 gap-y-10 gap-x-8 py-10">
+                                      <div className="col-start-5 grid grid-cols-2 gap-x-8 col-span-4">
+                                        {/* {children0.map((featured: any, i) => (
+                                        // {category.featured.slice(-2).map((featured, i) => (
+                                          <Link key={i} href={`/promociones/${featured.href}`} className="group text-base sm:text-xs md:text-sm">
+                                            <a>
+                                            <div className="aspect-w-1 aspect-h-1 rounded-lg bg-white overflow-hidden group-hover:opacity-75 leading-none">
+                                              <Image
+                                                src={featured.imageSrc}
+                                                alt={featured.imageAlt}
+                                                width='250'
+                                                height='250'
+                                                objectFit={"cover"}
+                                                objectPosition={'center'}
+                                              />
                                             </div>
-                                          ))}
-                                        </div>
+                                            <div className="mt-3 block font-medium text-gray-900 capitalize">
+                                              <span className="z-10 inset-0" aria-hidden="true" />
+                                              {featured.name}
+                                            </div>
+                                            <p aria-hidden="true" className="mt-1 capitalize ">
+                                              Ver Productos
+                                            </p>
+                                            </a>
+                                          </Link>
+                                        ))} */}
                                       </div>
+                                          <div className="row-start-1 grid grid-cols-4 gap-y-10 gap-x-8 text-xs md:text-sm col-span-4">
+                                            {l0.children.map((l1: Children, i: number) => (
+                                              <div key={i}>
+                                                <Link href={`/${l0.href}/${l1.href}`}>
+                                                  <a className="font-medium text-gray-900 capitalize">
+                                                    {l1.name}
+                                                  </a>
+                                                </Link>
+
+                                                {
+                                                  l1.children
+                                                    ?
+                                                    <ul
+                                                      role="list"
+                                                      aria-labelledby={`${l1.name}-heading`}
+                                                      className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                                    >
+                                                      {l1.children.map((l2: Children, i: number) => (
+                                                        // {section.items.slice(0,4).map((item:any, i) => (
+                                                        <li key={i} className="flex">
+                                                          <Link href={`/${l0.href}/${l1.href}/${l2.href}`}>
+                                                            <a className="hover:text-gray-800 capitalize">
+
+                                                              {l2.name}
+                                                            </a>
+                                                          </Link>
+                                                        </li>
+                                                      ))}
+                                                      {
+                                                        l1.children.length > 3
+                                                          ?
+                                                          <li className="flow-root">
+                                                            <Link href={`/${l0.href}/${l1.href}`}>
+
+                                                              <a className="-m-2 p-2 mb-3 block text-xs md:text-sm text-gray-900">
+                                                                Ver Todo {'>'}
+                                                              </a>
+                                                            </Link>
+                                                          </li>
+                                                          :
+                                                          null
+                                                      }
+
+                                                    </ul>
+                                                    :
+                                                    null
+                                                }
+                                              </div>
+
+                                            ))}
+                                          </div>
+                                      
                                     </div>
                                   </div>
-                                </Popover.Panel>
-                              </Transition>
-                            </>
-                          )}
-                        </Popover>
-                      ))}
-                    </>
-                  }
+                                </div>
+                              </Popover.Panel>
+                            </Transition>
+                            :
+                            null
+                          }
+                        </>
+                      )}
+                    </Popover>
+                  ))}
 
-                  {[].map((page:any, i) => (
-                  // {site.pages.map((page, i) => (
+                  {[].map((page: any, i) => (
+                    // {site.pages.map((page, i) => (
                     <Link key={i} href={page.href}>
-                    
-                    <a
-                      
-                      className="flex items-center text-xs md:text-sm font-medium text-gray-700 hover:text-gray-800 capitalize"
-                    >
-                      {page.name}
-                    </a>
+
+                      <a
+
+                        className="flex items-center text-xs md:text-sm font-medium text-gray-700 hover:text-gray-800 capitalize"
+                      >
+                        {page.name}
+                      </a>
                     </Link>
                   ))}
                   {/* {
@@ -503,6 +513,7 @@ export const HeaderWear:FC<Props> = ({data}) => {
 
                 </div>
               </Popover.Group>
+              }
 
 
 
@@ -522,7 +533,7 @@ export const HeaderWear:FC<Props> = ({data}) => {
                   </Link>
                 </div> */}
 
-                {/* <div className="hidden lg:ml-8 lg:flex">
+              {/* <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="text-gray-700 hover:text-gray-800 flex items-center">
                     <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
@@ -586,7 +597,7 @@ export const HeaderWear:FC<Props> = ({data}) => {
 
 
                 {/* Search */}
-                {/* <div className="flex lg:ml-3 items-center">
+              {/* <div className="flex lg:ml-3 items-center">
                   <div onClick={toggleSideSearch} className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <SearchIcon className="w-6 h-6" aria-hidden="true" />
@@ -628,7 +639,7 @@ export const HeaderWear:FC<Props> = ({data}) => {
                 }
 
                 {/* Cart */}
-                {/* <div className="ml-4 flow-root lg:ml-3">
+              {/* <div className="ml-4 flow-root lg:ml-3">
                   <div onClick={toggleSideCart} className="group -m-2 p-2 flex items-center">
                     <ShoppingBagIcon
                       className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"

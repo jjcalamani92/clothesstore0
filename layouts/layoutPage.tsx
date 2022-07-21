@@ -24,7 +24,9 @@ export const Layout: FC<Props> = ({
 	site
 }) => {
 	const { pathname, asPath } = useRouter()
-  console.log(asPath);
+  // console.log(asPath);
+	// console.log(site.route);
+	
 	
 	return (
 		<>
@@ -40,7 +42,7 @@ export const Layout: FC<Props> = ({
 				<meta property="product:price:currency" content="USD" />
 				<meta property="product:price:amount" content="25" />
 			</Head>
-      <HeaderWear data={site.data} />
+      <HeaderWear data={site.data} route={site.route} />
 			{
 				asPath === '/'
 				?

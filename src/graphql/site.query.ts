@@ -18,7 +18,6 @@ export const SITES = gql`
         location
         description
       }
-      
     }
   }
 `;
@@ -40,38 +39,44 @@ export const SITE = gql`
         location
         description
       }
-      route{
+      route {
         name
         href
         description
-        children{
+        children {
           name
           href
           description
+          children {
+            name
+            href
+            description
+            children {
+              name
+              href
+              description
+            }
+          }
         }
       }
-      
-      
     }
   }
 `;
 export const SITE_PATHS = gql`
   query Site($_id: ID!) {
     site(_id: $_id) {
-      route{
+      route {
         href
-        children{
+        children {
           href
-          children{
+          children {
             href
-            children{
+            children {
               href
             }
           }
         }
       }
-      
-      
     }
   }
 `;
