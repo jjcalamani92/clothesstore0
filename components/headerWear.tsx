@@ -439,7 +439,7 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
                                                           </Link>
                                                         </li>
                                                       ))}
-                                                      {
+                                                      {/* {
                                                         l1.children.length > 3
                                                           ?
                                                           <li className="flow-root">
@@ -452,7 +452,7 @@ export const HeaderWear: FC<Props> = ({ data, route }) => {
                                                           </li>
                                                           :
                                                           null
-                                                      }
+                                                      } */}
 
                                                     </ul>
                                                     :
